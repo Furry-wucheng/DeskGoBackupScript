@@ -4,8 +4,8 @@ from screeninfo import get_monitors
 import os
 import subprocess
 from win32api import GetSystemMetrics
-from ctypes import windll
 from time import sleep
+from sys import exit
 
 
 import psutil
@@ -80,7 +80,11 @@ def get_process_by_name(name):
 
 def backup_function():
     # 检查备份文件是否存在,不存在则创建
-    if not os.path.exists(backup_folder_path):
+    if not os.path.exists(BACKUP_PATH):
+        print(f"备份文件不存在，创建备份文件夹,路径为:{BACKUP_PATH}")
+        os.mkdir(BACKUP_PATH)
+        os.mkdir(backup_folder_path)
+    elif not os.path.exists(backup_folder_path):
         print(f"备份文件不存在，创建备份文件夹,路径为:{backup_folder_path}")
         os.mkdir(backup_folder_path)
 
@@ -139,10 +143,10 @@ def restore_function():
 if __name__ == "__main__":
     init()
 
-    if (not os.path.exists(APP_DATA_PATH)):
+    if not os.path.exists(APP_DATA_PATH):
         print("没有AppData文件，请确认您已经安装了腾讯桌面管理！或者检查APP_DATA是否正确！")
         sleep(3)
-        exit
+        exit()
 
 
     print(datetime.datetime.today())
@@ -151,7 +155,7 @@ if __name__ == "__main__":
     switcher = {
         "1": backup_function,
         "2": restore_function,
-        "0": exit
+        "0": lambda : exit()
     }
 
     while True:

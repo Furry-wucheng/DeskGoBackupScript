@@ -1,1 +1,7 @@
 .idea/
+.venv/
+dist/
+build/
+
+*.spec
+uv.lock

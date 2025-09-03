@@ -1,4 +1,8 @@
-# 腾讯桌面整理（DeskGo）扩展屏幕异常处理
+# 腾讯桌面整理（DeskGo）扩展屏幕异常处理脚本
+
+### 25/9/3 更新 - 添加uv，使用pyinstaller进行打包
+
+打包先激活环境然后使用命令 `pyinstaller --onefile --console --hidden-import=win32api .\DeskGoBackup.py`
 
 ### 24/12/11 更新 - 添加防手滑备份，防止恢复按成备份覆盖（simple文件夹下的没有改）
 
